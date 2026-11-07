@@ -1,6 +1,7 @@
 # Orchestrator workload templates
 
-Repository mẫu để kiểm tra nguồn Git của Resource Definition trong Orchestrator.
+Repository mẫu chứa cả workload templates và Terraform modules để kiểm tra
+nguồn Git của Resource Definition trong Orchestrator.
 Template sinh Deployment, StatefulSet hoặc CronJob cùng Service, volumes và
 các policy được workload khai báo. Không dùng Score và không chứa credential.
 
@@ -19,10 +20,35 @@ Namespace lấy từ Resource Definition namespace của platform, ví dụ:
 ${resources['k8s-namespace.default#environments.@app.@env'].outputs.name}
 ```
 
-Repo này chỉ cung cấp template workload. Preview/Deploy thật còn cần các
-Definition hạ tầng và cấu hình CD tương ứng trong môi trường.
+Repo cung cấp cả template workload và các module namespace/PostgreSQL/Redis.
+Preview/Deploy thật vẫn cần Definition chọn cluster đích, cấu hình CD, Secret
+Store và quyền truy cập tương ứng. Việc inspect/lưu Definition không provision
+bất kỳ tài nguyên nào.
+
+## Terraform modules
+
+Dùng cùng URL Git ở trên, chọn nguồn **Git**, ref `v0.2.0` và thư mục:
+
+| Resource Type | Thư mục module | Mục đích |
+|---|---|---|
+| `k8s-namespace` | `terraform/namespace` | Tạo namespace do platform quản lý |
+| `postgres` | `terraform/postgres` | PostgreSQL StatefulSet, Service và storage |
+| `redis` | `terraform/redis` | Redis StatefulSet, Service và storage |
+
+Chọn **Kiểm tra module**, cấu hình namespace/cluster references và ánh xạ
+inputs/outputs theo metadata đã kiểm tra. Password do executor quản lý;
+không đưa password hoặc kubeconfig vào repository hay biến literal.
+Các module được sao chép nguyên từ repo `pr3s3nt/terraform-modules`;
+xem SOURCE.md để biết revision và đường dẫn gốc.
 
 ## Cấu trúc
+
+```text
+templates/standard/       # Template driver cho workload
+terraform/namespace/     # Terraform: namespace
+terraform/postgres/      # Terraform: PostgreSQL
+terraform/redis/         # Terraform: Redis
+```
 
 - `templates/standard/bundle.yaml`: manifest source và workload presets.
 - `templates/standard/defaults.yaml`: mặc định dùng khi render.
