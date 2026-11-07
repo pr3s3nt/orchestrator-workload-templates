@@ -326,3 +326,10 @@ output "password" {
   value     = var.password
   sensitive = true
 }
+
+# Composite secret output lets form-only clients bind one credential reference.
+# No secret bytes are placed in a Workload document or ordinary metadata.
+output "connection_string" {
+  value     = "${kubernetes_service_v1.this.metadata[0].name}.${var.namespace}.svc.cluster.local:6379,user=${var.username},password=${var.password}"
+  sensitive = true
+}

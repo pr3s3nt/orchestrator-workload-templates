@@ -60,3 +60,12 @@ terraform/redis/         # Terraform: Redis
 Runtime files được lấy nguyên từ `pr3s3nt/poc`; xem SOURCE.md để biết commit.
 Mỗi lần thay đổi template cần commit/tag mới và chọn revision mới trên Console;
 Definition đã lưu không tự đổi pin khi `main` thay đổi.
+
+## v0.3.0 — compatible security defaults
+
+Generic presets are version 1.2.0: privileged=false without forcing UID, read-only
+root filesystem, capability drops, seccomp or token automount. Explicit permitted
+workload values win. The nginx-readonly image-specific preset is unchanged.
+This is a compatibility-oriented default, not full Baseline enforcement.
+Redis adds sensitive output `connection_string` for a single reference from the
+Workload form; password bytes stay in secret delivery, never literal workload data.

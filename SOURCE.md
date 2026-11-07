@@ -15,3 +15,10 @@
   - `modules/postgres-k8s/main.tf` → `terraform/postgres/main.tf`
   - `modules/redis-k8s/main.tf` → `terraform/redis/main.tf`
 - No infrastructure was applied as part of preparing this test repository.
+
+## v0.3.0 changes — issue #47
+
+Standard templates now contain the reviewed compatible security defaults and
+field-level security merge. Redis adds one sensitive connection_string output;
+other Terraform resources remain unchanged. Render tests cover all three
+controllers and app/init/sidecar roles; Redis fmt/init/validate pass.
