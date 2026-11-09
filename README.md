@@ -78,5 +78,12 @@ Workload form; password bytes stay in secret delivery, never literal workload da
 
 - `terraform/postgres`: thêm output `uri` (sensitive) và `jdbcUrl`.
 - `terraform/redis`: thêm output `uri` (sensitive), giữ `connection_string`.
-- Thêm `terraform/mysql` và `terraform/persistent-storage`.
+- Thêm `terraform/persistent-storage`.
 - `templates/standard` trùng với `pr3s3nt/poc` tại commit ghi trong SOURCE.md.
+
+## v0.4.1 — MySQL theo contract mới
+
+`terraform/mysql` lấy từ `projects/platform-resources/terraform/mysql` của
+`pr3s3nt/poc`: password do executor quản lý, có output `uri` (sensitive) và
+`jdbcUrl`, kèm `terraform test`. Thay bản MySQL contract cũ trong `v0.4.0`.
+Dùng `v0.4.1` cho mọi Definition mới.
