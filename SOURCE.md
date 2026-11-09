@@ -22,3 +22,14 @@ Standard templates now contain the reviewed compatible security defaults and
 field-level security merge. Redis adds one sensitive connection_string output;
 other Terraform resources remain unchanged. Render tests cover all three
 controllers and app/init/sidecar roles; Redis fmt/init/validate pass.
+
+## v0.4.0 changes — issue #54
+
+Synced from https://github.com/pr3s3nt/poc at commit `cc4320afda2afce37fe8c6231a42a3c33314b064`:
+- `backend/template-sources/standard` → `templates/standard` (runtime files already identical).
+- `backend/internal/adapters/terraform/modules/postgres-k8s/main.tf` → `terraform/postgres/main.tf` (adds `uri`, `jdbcUrl`).
+- `backend/internal/adapters/terraform/modules/redis-k8s/main.tf` → `terraform/redis/main.tf` (adds `uri`); the v0.3.0 `connection_string` output is kept.
+- `backend/terraform-modules/mysql/main.tf` → `terraform/mysql/main.tf`.
+- `backend/terraform-modules/persistent-storage/main.tf` → `terraform/persistent-storage/main.tf`.
+
+All five modules pass `terraform fmt -check` and `terraform validate` (Terraform 1.9.8). No infrastructure was applied while preparing this release.

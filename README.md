@@ -1,7 +1,8 @@
 # Orchestrator workload templates
 
-Repository mẫu chứa cả workload templates và Terraform modules để kiểm tra
-nguồn Git của Resource Definition trong Orchestrator.
+Nguồn phát hành chuẩn của workload templates và Terraform modules cho Console
+Orchestrator (từ `v0.4.0`, issue pr3s3nt/poc#54). Bản gốc để phát triển và test
+vẫn nằm trong repo `pr3s3nt/poc`; mỗi bản phát hành ở đây có tag riêng.
 Template sinh Deployment, StatefulSet hoặc CronJob cùng Service, volumes và
 các policy được workload khai báo. Không dùng Score và không chứa credential.
 
@@ -11,7 +12,7 @@ các policy được workload khai báo. Không dùng Score và không chứa cr
 2. Chọn loại `workload`; driver là `Template`.
 3. Nguồn Git: `https://github.com/pr3s3nt/orchestrator-workload-templates`.
 4. Thư mục template: `templates/standard`.
-5. Ref: `v0.1.0` hoặc commit chính xác muốn kiểm tra.
+5. Ref: `v0.4.0` hoặc commit chính xác muốn dùng.
 6. Bấm **Kiểm tra template**, đặt ID/tên và điều kiện áp dụng rồi lưu.
 
 Namespace lấy từ Resource Definition namespace của platform, ví dụ:
@@ -27,19 +28,20 @@ bất kỳ tài nguyên nào.
 
 ## Terraform modules
 
-Dùng cùng URL Git ở trên, chọn nguồn **Git**, ref `v0.2.0` và thư mục:
+Dùng cùng URL Git ở trên, chọn nguồn **Git**, ref `v0.4.0` và thư mục:
 
 | Resource Type | Thư mục module | Mục đích |
 |---|---|---|
 | `k8s-namespace` | `terraform/namespace` | Tạo namespace do platform quản lý |
 | `postgres` | `terraform/postgres` | PostgreSQL StatefulSet, Service và storage |
 | `redis` | `terraform/redis` | Redis StatefulSet, Service và storage |
+| `mysql` | `terraform/mysql` | MySQL StatefulSet, Service và storage |
+| `persistent-storage` | `terraform/persistent-storage` | PersistentVolumeClaim cho workload |
 
 Chọn **Kiểm tra module**, cấu hình namespace/cluster references và ánh xạ
 inputs/outputs theo metadata đã kiểm tra. Password do executor quản lý;
 không đưa password hoặc kubeconfig vào repository hay biến literal.
-Các module được sao chép nguyên từ repo `pr3s3nt/terraform-modules`;
-xem SOURCE.md để biết revision và đường dẫn gốc.
+Các module lấy từ repo `pr3s3nt/poc`; xem SOURCE.md để biết commit và đường dẫn gốc.
 
 ## Cấu trúc
 
@@ -48,6 +50,8 @@ templates/standard/       # Template driver cho workload
 terraform/namespace/     # Terraform: namespace
 terraform/postgres/      # Terraform: PostgreSQL
 terraform/redis/         # Terraform: Redis
+terraform/mysql/         # Terraform: MySQL
+terraform/persistent-storage/ # Terraform: PVC
 ```
 
 - `templates/standard/bundle.yaml`: manifest source và workload presets.
@@ -69,3 +73,10 @@ workload values win. The nginx-readonly image-specific preset is unchanged.
 This is a compatibility-oriented default, not full Baseline enforcement.
 Redis adds sensitive output `connection_string` for a single reference from the
 Workload form; password bytes stay in secret delivery, never literal workload data.
+
+## v0.4.0 — nguồn phát hành chuẩn (issue pr3s3nt/poc#54)
+
+- `terraform/postgres`: thêm output `uri` (sensitive) và `jdbcUrl`.
+- `terraform/redis`: thêm output `uri` (sensitive), giữ `connection_string`.
+- Thêm `terraform/mysql` và `terraform/persistent-storage`.
+- `templates/standard` trùng với `pr3s3nt/poc` tại commit ghi trong SOURCE.md.

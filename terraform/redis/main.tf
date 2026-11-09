@@ -327,6 +327,13 @@ output "password" {
   sensitive = true
 }
 
+# Connection string (issue #52). Credentials are percent-encoded; the password
+# makes it sensitive. In-cluster Redis serves plain TCP.
+output "uri" {
+  value     = "redis://${urlencode(var.username)}:${urlencode(var.password)}@${local.host}:6379"
+  sensitive = true
+}
+
 # Composite secret output lets form-only clients bind one credential reference.
 # No secret bytes are placed in a Workload document or ordinary metadata.
 output "connection_string" {
