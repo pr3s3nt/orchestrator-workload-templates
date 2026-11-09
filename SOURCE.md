@@ -41,3 +41,10 @@ https://github.com/pr3s3nt/poc commit `cc4320afda2afce37fe8c6231a42a3c33314b064`
 replaces `terraform/mysql`: executor-owned password and issue #52 `uri`/`jdbcUrl`
 outputs. `terraform fmt -check`, `validate` and `terraform test` (3 passed) with
 Terraform 1.9.8. Other files are unchanged from v0.4.0.
+
+## v0.4.2 changes — issue #54
+
+`terraform/postgres/main.tf` adds the sensitive `asyncUri` output
+(`postgresql+asyncpg://`). This is a release-repository addition requested by the
+user; it is not yet present in the `pr3s3nt/poc` module copies. `terraform fmt
+-check` and `validate` pass with Terraform 1.9.8.

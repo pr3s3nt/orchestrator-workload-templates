@@ -33,7 +33,7 @@ Dùng cùng URL Git ở trên, chọn nguồn **Git**, ref `v0.4.0` và thư m�
 | Resource Type | Thư mục module | Mục đích |
 |---|---|---|
 | `k8s-namespace` | `terraform/namespace` | Tạo namespace do platform quản lý |
-| `postgres` | `terraform/postgres` | PostgreSQL StatefulSet, Service và storage |
+| `postgres` | `terraform/postgres` | PostgreSQL StatefulSet, Service và storage; output `uri`, `asyncUri` (asyncpg), `jdbcUrl` |
 | `redis` | `terraform/redis` | Redis StatefulSet, Service và storage |
 | `mysql` | `terraform/mysql` | MySQL StatefulSet, Service và storage |
 | `persistent-storage` | `terraform/persistent-storage` | PersistentVolumeClaim cho workload |
@@ -87,3 +87,11 @@ Workload form; password bytes stay in secret delivery, never literal workload da
 `pr3s3nt/poc`: password do executor quản lý, có output `uri` (sensitive) và
 `jdbcUrl`, kèm `terraform test`. Thay bản MySQL contract cũ trong `v0.4.0`.
 Dùng `v0.4.1` cho mọi Definition mới.
+
+## v0.4.2 — output asyncUri cho PostgreSQL
+
+`terraform/postgres` thêm output `asyncUri` (sensitive): cùng kết nối với `uri`
+nhưng scheme `postgresql+asyncpg://` cho driver bất đồng bộ (SQLAlchemy asyncpg).
+Chỉ thêm output, không đổi biến hay tài nguyên. Muốn dùng trên Console: thêm
+output `asyncUri` (bí mật) vào Resource Type `postgres` và ánh xạ
+`asyncUri → asyncUri` trong Definition.

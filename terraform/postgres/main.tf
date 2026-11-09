@@ -331,3 +331,10 @@ output "uri" {
 }
 
 output "jdbcUrl" { value = "jdbc:postgresql://${local.host}:5432/${var.database}" }
+
+# Same connection for async drivers such as SQLAlchemy asyncpg. Sensitive for the
+# same reason as uri. Release-repository addition (pr3s3nt/poc#54).
+output "asyncUri" {
+  value     = "postgresql+asyncpg://${urlencode(var.username)}:${urlencode(var.password)}@${local.host}:5432/${urlencode(var.database)}"
+  sensitive = true
+}
