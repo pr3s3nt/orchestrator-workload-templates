@@ -48,3 +48,12 @@ Terraform 1.9.8. Other files are unchanged from v0.4.0.
 (`postgresql+asyncpg://`). This is a release-repository addition requested by the
 user; it is not yet present in the `pr3s3nt/poc` module copies. `terraform fmt
 -check` and `validate` pass with Terraform 1.9.8.
+
+## v0.5.0 changes — issue pr3s3nt/poc#71
+
+Synced from https://github.com/pr3s3nt/poc at commit `dfa6470c84767cb1c005351a236861e54e3bc878`:
+`backend/template-sources/standard` → `templates/standard`. Adds the
+`backend-migrate` workload template ("Backend API có migrate") and
+`resources/migrate.tpl`, which renders a one-shot `<workload>-migrate` Job run
+before the Environment app bundle (ADR-042). Other runtime files are unchanged;
+Terraform modules are unchanged.
