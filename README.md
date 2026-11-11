@@ -34,6 +34,7 @@ Dùng cùng URL Git ở trên, chọn nguồn **Git**, ref `v0.4.0` và thư m�
 |---|---|---|
 | `k8s-namespace` | `terraform/namespace` | Tạo namespace do platform quản lý |
 | `postgres` | `terraform/postgres` | PostgreSQL StatefulSet, Service và storage; output `uri`, `asyncUri` (asyncpg), `jdbcUrl` |
+| `postgres` | `terraform/postgres-ha` | CNPG primary/standby, class `ha`; operator required |
 | `redis` | `terraform/redis` | Redis StatefulSet, Service và storage |
 | `mysql` | `terraform/mysql` | MySQL StatefulSet, Service và storage |
 | `persistent-storage` | `terraform/persistent-storage` | PersistentVolumeClaim cho workload |

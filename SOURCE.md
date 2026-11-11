@@ -57,3 +57,15 @@ Synced from https://github.com/pr3s3nt/poc at commit `dfa6470c84767cb1c005351a23
 `resources/migrate.tpl`, which renders a one-shot `<workload>-migrate` Job run
 before the Environment app bundle (ADR-042). Other runtime files are unchanged;
 Terraform modules are unchanged.
+
+## v0.6.0 changes — Refs pr3s3nt/poc#75 (pending acceptance)
+
+`terraform/postgres-ha` is authored directly in this release repository, per
+user decision 2026-11-11. No copy is added to poc/platform-catalog. CNPG 1.30.1
+operator is installed separately; the module pins the CNPG PostgreSQL 16.14
+multi-architecture image, creates Cluster/basic-auth Secret and preserves all
+eight postgres outputs. Existing terraform/postgres is unchanged.
+
+Terraform 1.9.8: fmt -check, validate and test (5 passed) pass. Tests use a mock
+provider; live kind failover/cleanup acceptance is recorded separately in poc.
+No tag is created until user acceptance.
