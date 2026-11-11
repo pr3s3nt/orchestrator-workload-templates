@@ -31,6 +31,10 @@ bất kỳ tài nguyên nào.
 
 Dùng cùng URL Git ở trên, chọn nguồn **Git**, ref `v0.4.0` và thư mục:
 
+Riêng `terraform/postgres-ha` đang nghiệm thu: dùng full commit SHA đã kiểm tra
+trên nhánh `features/postgres-ha`; các tag cũ không có module này. Chỉ sau khi
+người dùng nghiệm thu mới phát hành và dùng tag `v0.6.0`.
+
 | Resource Type | Thư mục module | Mục đích |
 |---|---|---|
 | `k8s-namespace` | `terraform/namespace` | Tạo namespace do platform quản lý |
