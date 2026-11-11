@@ -2,7 +2,8 @@
 
 Nguồn phát hành chuẩn của workload templates và Terraform modules cho Console
 Orchestrator (từ `v0.4.0`, issue pr3s3nt/poc#54). Bản gốc để phát triển và test
-vẫn nằm trong repo `pr3s3nt/poc`; mỗi bản phát hành ở đây có tag riêng.
+vẫn nằm trong repo `pr3s3nt/poc`, ngoại trừ module `postgres-ha` được viết
+trực tiếp tại repo này (issue #75); mỗi bản phát hành ở đây có tag riêng.
 Template sinh Deployment, StatefulSet hoặc CronJob cùng Service, volumes và
 các policy được workload khai báo. Không dùng Score và không chứa credential.
 
@@ -42,7 +43,8 @@ Dùng cùng URL Git ở trên, chọn nguồn **Git**, ref `v0.4.0` và thư m�
 Chọn **Kiểm tra module**, cấu hình namespace/cluster references và ánh xạ
 inputs/outputs theo metadata đã kiểm tra. Password do executor quản lý;
 không đưa password hoặc kubeconfig vào repository hay biến literal.
-Các module lấy từ repo `pr3s3nt/poc`; xem SOURCE.md để biết commit và đường dẫn gốc.
+Các module lấy từ repo `pr3s3nt/poc`, ngoại trừ `postgres-ha` phát triển trực tiếp
+tại đây; xem SOURCE.md để biết provenance.
 
 ## Cấu trúc
 
