@@ -91,3 +91,17 @@ Terraform 1.9.8: fmt -check, validate and test (5 passed) pass. Tests use a mock
 provider; live kind failover/cleanup acceptance is recorded separately in poc.
 Merged into main at the user's request together with MongoDB. No release tag
 is created as part of this merge; v0.6.0 remains the planned HA release tag.
+
+
+## Portable MongoDB Definition file — Refs pr3s3nt/poc#79
+
+The MongoDB Definition sample now authors Git `url/ref/path`. Console explicitly
+checks the full file, resolves its immutable pin, shows the reviewed commit and
+registers that canonical draft. Source/module IDs and content hashes are internal
+metadata, no longer fields a user must collect through DevTools.
+
+Requires the Definition document enhancement in poc commit
+`7b45f4a6b08dcd7a91c1a510ac9c80bb7fba6106` (feature branch, pending acceptance).
+MongoDB Type and Terraform module bytes are unchanged from main `04136a3`.
+YAML parsing/mapping checks pass; the product feature browser scenario checked
+real Git MongoDB import, portable exports and REUSED/CONFLICT history invariance.

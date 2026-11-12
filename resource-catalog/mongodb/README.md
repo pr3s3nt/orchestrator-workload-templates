@@ -5,10 +5,23 @@
 - Module Git tương ứng: `terraform/mongodb` trong repo phát hành
   `pr3s3nt/orchestrator-workload-templates`.
 
-Mỗi YAML là một body đăng ký độc lập. Thay toàn bộ `<...>` trong Definition
-bằng bộ pin từ cùng kết quả **Kiểm tra module** trên Console đích và image
-MongoDB đã pin digest. Chọn revision có module MongoDB này. Không tự lấy module
-ID/hash từ installation khác hoặc dùng Git URL thay `source_id`.
+Mỗi YAML là một body đăng ký độc lập. Trong Definition, điền image MongoDB đã
+pin digest và giữ hoặc sửa nguồn Git:
+
+```yaml
+source:
+  url: https://github.com/pr3s3nt/orchestrator-workload-templates
+  ref: main
+  path: terraform/mongodb
+```
+
+`ref` có thể là branch/tag/full commit. Bấm **Kiểm tra cấu hình** để Console tự
+lấy module, resolve commit và tính hash; xem nguồn/commit đã xác minh rồi bấm
+**Đăng ký**. Không phải điền source/module IDs hoặc mở DevTools. Sửa nội dung
+hay upload mới thì kiểm tra lại. Definition lưu commit bất biến; thay đổi Git
+không tự nâng cấp cấu hình. Tải file đã lưu sẽ dùng exact commit trong `ref`.
+Luồng file này cần Console hỗ trợ issue `pr3s3nt/poc#79`; Console cũ dùng Biểu mẫu
+với cùng URL/ref/path để chuẩn bị nguồn và đăng ký.
 
 Mẫu dùng `env_type: staging`, resource class `in-cluster`, cluster class
 `bootstrap-dev` và namespace class `default`. Sửa theo các Definitions đang có
