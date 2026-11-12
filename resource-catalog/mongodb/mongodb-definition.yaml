@@ -1,13 +1,9 @@
 # Nhập sau mongodb-type.yaml: Console > Cấu hình tài nguyên > Nhập YAML/JSON.
-# Hướng dẫn: resource-catalog/mongodb/README.md trong repo phát hành.
-# Thay TẤT CẢ giá trị <...> trước khi nhập; đây chưa phải source pin đã xác minh.
-# Inspect module MongoDB từ Git trên Console đích rồi chép đủ năm trường source
-# từ CÙNG kết quả inspect. Module tham chiếu trong repo này:
-# terraform/mongodb trong repo orchestrator-workload-templates.
-# subdirectory phải theo kết quả inspect thực tế.
-# Module phải nhận image/database/username/storage/namespace và xuất đủ sáu
-# output được map bên dưới; password/master_password do executor cung cấp.
-# Không thêm password hoặc master_password vào variables/input_mapping.
+# Điền image MongoDB đã pin digest và chọn cluster/namespace/criteria phù hợp.
+# Bấm Kiểm tra cấu hình, xem commit đã xác minh, rồi Đăng ký.
+# Hệ thống tự tạo IDs/hash; không cần lấy source pin từ DevTools.
+# Cần Console hỗ trợ Git source url/ref/path (issue pr3s3nt/poc#79).
+# Password/master_password do executor sinh, không điền vào file.
 key: staging-mongodb
 name: Staging MongoDB
 resourceType: mongodb
@@ -15,11 +11,9 @@ driverType: terraform
 driverInputs:
   values:
     source:
-      source_id: "<sourceId đã đăng ký trên Console đích>"
-      module_id: "<moduleId MongoDB đã inspect>"
-      revision: "<revision bất biến đã inspect>"
-      subdirectory: "<subdirectory chính xác đã inspect>"
-      content_sha256: "<contentSha256 đầy đủ 64 ký tự hex đã inspect>"
+      url: https://github.com/pr3s3nt/orchestrator-workload-templates
+      ref: main
+      path: terraform/mongodb
     variables:
       # Docker Official Image MongoDB hoặc image nội bộ tương thích có mongosh.
       # Dùng digest thật đã duyệt, dạng registry/repository@sha256:64-hex.

@@ -83,8 +83,9 @@ Definition đã lưu không tự đổi pin khi `main` thay đổi.
 Type nhận `database` bắt buộc, `username`/`storage` tuỳ chọn; image do Definition
 quản lý. Module `terraform/mongodb` xuất sáu output bắt buộc `host`, `port`,
 `database`, `username`, `password`, `connection`; hai output cuối là secret.
-Chọn revision có module này, inspect trên Console đích rồi điền bộ pin và image
-digest vào Definition trước khi nhập. Các tag cũ chưa chứa bộ MongoDB này.
+Điền image digest và nguồn Git url/ref/path trong Definition, bấm Kiểm tra cấu
+hình để xem commit được pin rồi Đăng ký (Console hỗ trợ issue pr3s3nt/poc#79).
+Các tag cũ chưa chứa bộ MongoDB này.
 
 ## v0.3.0 — compatible security defaults
 
