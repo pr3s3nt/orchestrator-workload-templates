@@ -36,6 +36,7 @@ Dùng cùng URL Git ở trên, chọn nguồn **Git**, ref `v0.4.0` và thư m�
 | `postgres` | `terraform/postgres` | PostgreSQL StatefulSet, Service và storage; output `uri`, `asyncUri` (asyncpg), `jdbcUrl` |
 | `redis` | `terraform/redis` | Redis StatefulSet, Service và storage |
 | `mysql` | `terraform/mysql` | MySQL StatefulSet, Service và storage |
+| `mongodb` | `terraform/mongodb` | MongoDB StatefulSet, Service và PVC; sáu output ứng dụng |
 | `persistent-storage` | `terraform/persistent-storage` | PersistentVolumeClaim cho workload |
 
 Chọn **Kiểm tra module**, cấu hình namespace/cluster references và ánh xạ
@@ -51,7 +52,9 @@ terraform/namespace/     # Terraform: namespace
 terraform/postgres/      # Terraform: PostgreSQL
 terraform/redis/         # Terraform: Redis
 terraform/mysql/         # Terraform: MySQL
+terraform/mongodb/       # Terraform: MongoDB
 terraform/persistent-storage/ # Terraform: PVC
+resource-catalog/mongodb/ # Resource Type và Definition YAML nhập trên Console
 ```
 
 - `templates/standard/bundle.yaml`: manifest source và workload presets.
@@ -64,6 +67,16 @@ terraform/persistent-storage/ # Terraform: PVC
 Runtime files được lấy nguyên từ `pr3s3nt/poc`; xem SOURCE.md để biết commit.
 Mỗi lần thay đổi template cần commit/tag mới và chọn revision mới trên Console;
 Definition đã lưu không tự đổi pin khi `main` thay đổi.
+
+## MongoDB Type và Definition
+
+[resource-catalog/mongodb/](resource-catalog/mongodb/README.md) chứa
+`mongodb-type.yaml` và `mongodb-definition.yaml` để nhập lần lượt trên Console.
+Type nhận `database` bắt buộc, `username`/`storage` tuỳ chọn; image do Definition
+quản lý. Module `terraform/mongodb` xuất sáu output bắt buộc `host`, `port`,
+`database`, `username`, `password`, `connection`; hai output cuối là secret.
+Chọn revision có module này, inspect trên Console đích rồi điền bộ pin và image
+digest vào Definition trước khi nhập. Các tag cũ chưa chứa bộ MongoDB này.
 
 ## v0.3.0 — compatible security defaults
 

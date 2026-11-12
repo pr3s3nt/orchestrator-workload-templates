@@ -57,3 +57,24 @@ Synced from https://github.com/pr3s3nt/poc at commit `dfa6470c84767cb1c005351a23
 `resources/migrate.tpl`, which renders a one-shot `<workload>-migrate` Job run
 before the Environment app bundle (ADR-042). Other runtime files are unchanged;
 Terraform modules are unchanged.
+
+## MongoDB catalog and module — issue pr3s3nt/poc#78
+
+Synced from https://github.com/pr3s3nt/poc at commit
+`9d15a22410e3cff0e16b88da64d39ded8df6638a`:
+
+- `projects/platform-resources/terraform/mongodb` → `terraform/mongodb`.
+- `projects/platform-resources/resource-catalog/mongodb` → `resource-catalog/mongodb`.
+
+Files copied unchanged. Type requires database; username/storage are optional
+with app/10Gi defaults. Image and placement belong to the Definition. Module
+exposes exactly host/port/database/username/password/connection; the last two
+are sensitive. No PVC or namespace outputs are exposed.
+
+Validated with Terraform 1.9.8 and signed HashiCorp Kubernetes provider 2.38.0:
+fmt check, validate and all three mock-provider tests pass. YAML Type equals
+the source bootstrap Type; both source Definitions map the same inputs and six
+outputs. Source bootstrap integration test and documentation checker pass.
+No infrastructure was applied and no target Console registration was performed.
+Definition source pins and image digest are explicit values to fill after
+inspecting this module on the destination installation.
