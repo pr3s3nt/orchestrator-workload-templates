@@ -101,7 +101,7 @@ registers that canonical draft. Source/module IDs and content hashes are interna
 metadata, no longer fields a user must collect through DevTools.
 
 Requires the Definition document enhancement in poc commit
-`7b45f4a6b08dcd7a91c1a510ac9c80bb7fba6106` (feature branch, pending acceptance).
+`7b45f4a6b08dcd7a91c1a510ac9c80bb7fba6106` (merged into product main at `9bf70931`).
 MongoDB Type and Terraform module bytes are unchanged from main `04136a3`.
 YAML parsing/mapping checks pass; the product feature browser scenario checked
 real Git MongoDB import, portable exports and REUSED/CONFLICT history invariance.
