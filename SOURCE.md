@@ -78,3 +78,16 @@ outputs. Source bootstrap integration test and documentation checker pass.
 No infrastructure was applied and no target Console registration was performed.
 Definition source pins and image digest are explicit values to fill after
 inspecting this module on the destination installation.
+
+## PostgreSQL HA — Refs pr3s3nt/poc#75 (merged, untagged)
+
+`terraform/postgres-ha` is authored directly in this release repository, per
+user decision 2026-11-11. No copy is added to poc/platform-catalog. CNPG 1.30.1
+operator is installed separately; the module pins the CNPG PostgreSQL 16.14
+multi-architecture image, creates Cluster/basic-auth Secret and preserves all
+eight postgres outputs. Existing terraform/postgres is unchanged.
+
+Terraform 1.9.8: fmt -check, validate and test (5 passed) pass. Tests use a mock
+provider; live kind failover/cleanup acceptance is recorded separately in poc.
+Merged into main at the user's request together with MongoDB. No release tag
+is created as part of this merge; v0.6.0 remains the planned HA release tag.
