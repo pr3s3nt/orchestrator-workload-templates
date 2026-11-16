@@ -124,6 +124,13 @@ preexisting Gateway resource (no Gateway apply/adoption/destroy).
 Product focused route renderer/guard, Gateway registration/readiness and
 namespace placement checks pass, including missing/modified/duplicate route
 rejection and legacy endpoint checks. Frontend typecheck/lint/build and docs checks
-pass; task application acceptance and full kind checks remain pending. No shared
-Gateway/controller/DNS/TLS was changed. Inspect the exact feature commit with a
+pass. Real native/Score batch Deploy, shared namespace-bound PostgreSQL,
+authenticated SQL, template routes through the existing Gateway, update/restart
+identity preservation and Console product cleanup passed on kind. Full frontend
+passes 1067 tests/typecheck/lint/build; full product backend and main have the
+same 103 failing top-level tests and 8 skips, with both builds passing. This is
+not a full green backend gate. Execution evidence:
+https://github.com/pr3s3nt/poc/blob/features/Httproute/orchestrator_docs/verification/2026-11-16-namespace-template-routes.md.
+No shared Gateway/controller/DNS/TLS was changed. Inspect the tested feature
+commit `5407998b0e08dc0da51c19c28517dfa191e7a3ee` with a
 backend supporting #84; older deployed template pins are not automatically changed.
