@@ -105,3 +105,25 @@ Requires the Definition document enhancement in poc commit
 MongoDB Type and Terraform module bytes are unchanged from main `04136a3`.
 YAML parsing/mapping checks pass; the product feature browser scenario checked
 real Git MongoDB import, portable exports and REUSED/CONFLICT history invariance.
+
+## Namespace-owned placement and template HTTPRoute — Refs pr3s3nt/poc#84
+
+Feature branch `features/Httproute`, not accepted or tagged. Runtime changes
+copied from `pr3s3nt/poc` commit `1a33bed7`:
+
+- `backend/template-sources/standard/bundle.yaml`: declares capability
+  `endpoint-httproute-v1` and orders the HTTPRoute template after Service.
+- `backend/template-sources/standard/resources/httproute.tpl`: constructs route
+  from the platform-authorized endpoint intent and actual rendered Service.
+
+Terraform module bytes are unchanged. The MongoDB Definition sample references
+its namespace as provider source; the namespace Definition supplies cluster
+identity. Gateway/endpoint Type and Definition samples document the separate
+preexisting Gateway resource (no Gateway apply/adoption/destroy).
+
+Product focused route renderer/guard, Gateway registration/readiness and
+namespace placement checks pass, including missing/modified/duplicate route
+rejection and legacy endpoint checks. Frontend typecheck/lint/build and docs checks
+pass; task application acceptance and full kind checks remain pending. No shared
+Gateway/controller/DNS/TLS was changed. Inspect the exact feature commit with a
+backend supporting #84; older deployed template pins are not automatically changed.

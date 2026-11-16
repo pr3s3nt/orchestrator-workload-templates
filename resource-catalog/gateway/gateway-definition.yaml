@@ -1,0 +1,19 @@
+# Nhập Type trước. Chọn đúng cluster, Gateway/listener có sẵn và domain thực tế.
+# Không tạo hoặc nhận ownership Gateway. Không đưa credential vào file.
+key: existing-public-gateway
+name: Existing public Gateway
+resourceType: k8s-gateway
+driverType: existing-gateway
+driverInputs:
+  values:
+    variables:
+      cluster: "${resources['k8s-cluster.internal#environments.@app.@env'].outputs.cluster}"
+      rootDomain: apps.company.example
+      scheme: https
+      gatewayName: public
+      gatewayNamespace: gateway-system
+      gatewaySectionName: websecure
+criteria:
+  - env_type: staging
+    class: default
+provision: {}

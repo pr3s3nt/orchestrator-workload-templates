@@ -1,0 +1,19 @@
+key: endpoint
+inputs:
+  - name: name
+    type: string
+    required: true
+  - name: port
+    type: string
+    required: true
+  - name: path
+    type: string
+outputs:
+  - name: hostname
+    type: string
+    required: true
+    secret: false
+  - name: url
+    type: string
+    required: true
+    secret: false

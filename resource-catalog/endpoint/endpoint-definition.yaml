@@ -1,0 +1,13 @@
+# Cần backend có issue pr3s3nt/poc#84 và template capability endpoint-httproute-v1.
+# Gateway Definition chọn domain/listener/cluster; endpoint chỉ tham chiếu nó.
+key: gateway-endpoint
+name: Gateway endpoint
+resourceType: endpoint
+driverType: endpoint
+driverInputs:
+  values:
+    variables:
+      gateway: "${resources['k8s-gateway.default#environments.@app.@env'].outputs.gateway}"
+criteria:
+  - env_type: staging
+provision: {}
