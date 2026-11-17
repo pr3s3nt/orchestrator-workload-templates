@@ -32,3 +32,11 @@ provider_bindings:
 
 Namespace Definition vẫn bind tới cluster. Không đổi Terraform module để thêm
 credential/cluster variable vào database. Database cloud giữ Definition riêng.
+
+## Echo metadata — điều chỉnh đã duyệt 2026-11-17
+
+Mẫu mới dùng `echo`; `values.variables.gateway` chứa cluster và policy. Executor
+trả metadata, không gọi Kubernetes và không tạo ownership. Platform kiểm tra
+Gateway/listener/hostname/allowedRoutes riêng trước render/publish. Cluster vẫn
+dùng driver kết nối riêng và Driver Account. Definition existing-gateway cũ giữ
+layout phẳng, adapter và revision; không tự đổi các pin đang chạy.
