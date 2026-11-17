@@ -134,3 +134,23 @@ https://github.com/pr3s3nt/poc/blob/features/Httproute/orchestrator_docs/verific
 No shared Gateway/controller/DNS/TLS was changed. Inspect the tested feature
 commit `5407998b0e08dc0da51c19c28517dfa191e7a3ee` with a
 backend supporting #84; older deployed template pins are not automatically changed.
+
+## Echo Gateway metadata refinement — Refs pr3s3nt/poc#84
+
+Approved 2026-11-17. Gateway Definition sample `987c5ce` now uses the generic
+Echo envelope; it requires product implementation `35bcd06c` or later. Product
+merge `df719115` includes current main `ab37e2d4`. The cluster still uses its
+dedicated existing-cluster adapter/Driver Account; Gateway readiness and admission
+are checked separately before render/CD. Legacy existing-gateway revisions are
+retained, with no implicit migration or physical Gateway ownership.
+
+All Terraform and template bytes are identical to tested runtime pin `5407998`.
+The sample YAML parses and exposes the required gateway envelope. Real merged
+native/Score batch deploy, update, restart and product cleanup passed. A new
+review application confirms executed READY Echo Gateway resources and reaches
+both actual workloads in a browser. Full merged frontend passes 1076 tests and
+typecheck/lint/build. Backend comparison, source attribution and cleanup are
+recorded in the product verification record:
+https://github.com/pr3s3nt/poc/blob/features/Httproute/orchestrator_docs/verification/2026-11-17-echo-gateway.md.
+Feature branches remain awaiting user acceptance; no main merge or tag is made
+in this template repository.

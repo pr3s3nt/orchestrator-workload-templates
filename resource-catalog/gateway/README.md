@@ -35,6 +35,7 @@ credential/cluster variable vào database. Database cloud giữ Definition riên
 
 ## Echo metadata — điều chỉnh đã duyệt 2026-11-17
 
+Cần backend poc từ commit `35bcd06c` (nhánh tính năng chưa nghiệm thu).
 Mẫu mới dùng `echo`; `values.variables.gateway` chứa cluster và policy. Executor
 trả metadata, không gọi Kubernetes và không tạo ownership. Platform kiểm tra
 Gateway/listener/hostname/allowedRoutes riêng trước render/publish. Cluster vẫn
