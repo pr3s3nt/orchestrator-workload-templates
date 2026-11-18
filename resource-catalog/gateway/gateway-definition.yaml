@@ -1,6 +1,6 @@
-# Cần backend poc hỗ trợ Echo Gateway từ commit 35bcd06c (điều chỉnh #84 ngày 2026-11-17).
-# Nhập Type trước. Chọn đúng cluster, Gateway/listener có sẵn và domain thực tế.
-# Không tạo hoặc nhận ownership Gateway. Không đưa credential vào file.
+# Mẫu cấu hình: thay các giá trị <...> theo Console đích trước khi Kiểm tra.
+# Nhập Type trước Definition. Không ghi password, token hoặc kubeconfig vào YAML.
+# Thay domain/Gateway/listener mẫu theo hạ tầng có sẵn; không tạo Gateway.
 key: existing-public-gateway
 name: Gateway Traefik có sẵn
 resourceType: k8s-gateway
@@ -9,7 +9,7 @@ driverInputs:
   values:
     variables:
       gateway:
-        cluster: "${resources['k8s-cluster.internal#environments.@app.@env'].outputs.cluster}"
+        cluster: ${resources['k8s-cluster.default#environments.@app.@env'].outputs.cluster}
         rootDomain: apps.company.example
         scheme: https
         gatewayName: public

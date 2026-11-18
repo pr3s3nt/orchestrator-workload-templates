@@ -1,0 +1,38 @@
+# Nhập Type trước Definition; Type đã tồn tại khác schema sẽ trả CONFLICT.
+key: redis
+inputs:
+  - name: username
+    type: string
+    required: false
+  - name: storage
+    type: string
+    required: false
+outputs:
+  - name: host
+    type: string
+    required: true
+    secret: false
+  - name: port
+    type: number
+    required: true
+    secret: false
+  - name: username
+    type: string
+    required: true
+    secret: false
+  - name: password
+    type: string
+    required: true
+    secret: true
+  - name: tls
+    type: bool
+    required: true
+    secret: false
+  - name: uri
+    type: string
+    required: false
+    secret: true
+  - name: connection_string
+    type: string
+    required: false
+    secret: true

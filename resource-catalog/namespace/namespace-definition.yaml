@@ -1,0 +1,25 @@
+# Mẫu cấu hình: thay các giá trị <...> theo Console đích trước khi Kiểm tra.
+# Nhập Type trước Definition. Không ghi password, token hoặc kubeconfig vào YAML.
+# Namespace lấy tên do platform cấp và bind trực tiếp tới cluster default.
+key: default-namespace
+name: Namespace ứng dụng
+resourceType: k8s-namespace
+driverType: terraform
+driverInputs:
+  values:
+    source:
+      url: https://github.com/pr3s3nt/orchestrator-workload-templates
+      ref: b8e98a7f2d2239ab99de52b5dda7321653119dec
+      path: terraform/namespace
+    variables:
+      name: ${context.env.namespace}
+    input_mapping: {}
+    output_mapping:
+      name: name
+    provider_bindings:
+      kubernetes:
+        target: resource
+        resource_ref: k8s-cluster.default#environments.@app.@env
+criteria:
+  - class: default
+provision: {}

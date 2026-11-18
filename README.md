@@ -62,7 +62,7 @@ terraform/redis/         # Terraform: Redis
 terraform/mysql/         # Terraform: MySQL
 terraform/mongodb/       # Terraform: MongoDB
 terraform/persistent-storage/ # Terraform: PVC
-resource-catalog/mongodb/ # Resource Type và Definition YAML nhập trên Console
+resource-catalog/        # Bộ Type/Definition đầy đủ và thứ tự nhập trên Console
 ```
 
 - `templates/standard/bundle.yaml`: manifest source và workload presets.
@@ -128,3 +128,10 @@ Xem [Gateway/endpoint samples](resource-catalog/gateway/README.md).
 Mẫu MongoDB dùng provider namespace, kế thừa cluster qua namespace. Các Terraform
 module không đổi. Dùng exact commit khi inspect; chưa có release tag mới.
 Gateway/Endpoint Definition đều dùng class `default` và dùng chung cho app mới.
+
+## Bộ catalog đầy đủ
+
+[resource-catalog/README.md](resource-catalog/README.md) liệt kê 10 Types/11 Definitions
+cho toàn bộ module hiện có và cluster/Gateway/Endpoint/workload drivers. Class
+default cho các mẫu, PostgreSQL HA dùng ha. Các Terraform source pin cùng commit;
+password/account/template-source prerequisites được ghi rõ trước khi nhập.

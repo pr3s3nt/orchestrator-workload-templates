@@ -1,0 +1,45 @@
+# Nhập Type trước Definition; Type đã tồn tại khác schema sẽ trả CONFLICT.
+key: postgres
+inputs:
+  - name: database
+    type: string
+    required: true
+  - name: username
+    type: string
+    required: false
+  - name: storage
+    type: string
+    required: false
+outputs:
+  - name: host
+    type: string
+    required: true
+    secret: false
+  - name: port
+    type: number
+    required: true
+    secret: false
+  - name: database
+    type: string
+    required: true
+    secret: false
+  - name: username
+    type: string
+    required: true
+    secret: false
+  - name: password
+    type: string
+    required: true
+    secret: true
+  - name: uri
+    type: string
+    required: false
+    secret: true
+  - name: jdbcUrl
+    type: string
+    required: false
+    secret: false
+  - name: asyncUri
+    type: string
+    required: false
+    secret: true

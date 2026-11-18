@@ -1,0 +1,13 @@
+# Mẫu cấu hình: thay các giá trị <...> theo Console đích trước khi Kiểm tra.
+# Nhập Type trước Definition. Không ghi password, token hoặc kubeconfig vào YAML.
+key: default-cluster
+name: Cluster Kubernetes có sẵn
+resourceType: k8s-cluster
+driverType: existing-cluster
+driverAccount: <key Driver Account Internal đã READY>
+driverInputs:
+  values:
+    variables: {}
+criteria:
+  - class: default
+provision: {}

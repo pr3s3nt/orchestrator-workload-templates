@@ -1,0 +1,41 @@
+# Mẫu cấu hình: thay các giá trị <...> theo Console đích trước khi Kiểm tra.
+# Nhập Type trước Definition. Không ghi password, token hoặc kubeconfig vào YAML.
+# image kế thừa digest cố định từ module ở commit source.ref. Password/tags do executor cấp.
+key: default-postgres
+name: PostgreSQL trong namespace
+resourceType: postgres
+driverType: terraform
+driverInputs:
+  values:
+    source:
+      url: https://github.com/pr3s3nt/orchestrator-workload-templates
+      ref: b8e98a7f2d2239ab99de52b5dda7321653119dec
+      path: terraform/postgres
+    variables:
+      namespace: ${resources['k8s-namespace.default#environments.@app.@env'].outputs.name}
+      username: app
+      storage: 1Gi
+      storage_class: ""
+    input_mapping:
+      database:
+        param: database
+      username:
+        param: username
+      storage:
+        param: storage
+    output_mapping:
+      host: host
+      port: port
+      database: database
+      username: username
+      password: password
+      uri: uri
+      jdbcUrl: jdbcUrl
+      asyncUri: asyncUri
+    provider_bindings:
+      kubernetes:
+        target: resource
+        resource_ref: k8s-namespace.default#environments.@app.@env
+criteria:
+  - class: default
+provision: {}

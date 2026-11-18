@@ -67,3 +67,10 @@ terraform -chdir=terraform/mongodb test
 
 Các test dùng mock, không kết nối Kubernetes hoặc MongoDB thật. Dữ liệu trong
 test là fixture; không dùng image digest giả hoặc password test khi triển khai.
+
+## Bộ catalog đầy đủ
+
+Mẫu hiện dùng class default, không giới hạn staging; ID staging-mongodb được giữ
+nguyên. Database/PVC dùng namespace default; namespace và Gateway dùng cluster
+default. Xem [thứ tự nhập và prerequisites](../README.md). Image vẫn cần thay bằng
+digest phù hợp trước khi Kiểm tra; root/app passwords do executor cấp.
