@@ -163,4 +163,3 @@ shared across apps/environments. Example keys, infrastructure placeholders and
 references remain unchanged. Terraform/template runtime bytes remain identical
 to accepted pin `5407998`; source pins already deployed are not auto-upgraded.
 No new release tag or main-installation catalog import is performed.
-
