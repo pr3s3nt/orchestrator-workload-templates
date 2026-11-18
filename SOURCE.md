@@ -105,3 +105,62 @@ Requires the Definition document enhancement in poc commit
 MongoDB Type and Terraform module bytes are unchanged from main `04136a3`.
 YAML parsing/mapping checks pass; the product feature browser scenario checked
 real Git MongoDB import, portable exports and REUSED/CONFLICT history invariance.
+
+## Namespace-owned placement and template HTTPRoute — Refs pr3s3nt/poc#84
+
+Initially implemented on feature branch `features/Httproute`. Runtime changes
+copied from `pr3s3nt/poc` commit `1a33bed7`:
+
+- `backend/template-sources/standard/bundle.yaml`: declares capability
+  `endpoint-httproute-v1` and orders the HTTPRoute template after Service.
+- `backend/template-sources/standard/resources/httproute.tpl`: constructs route
+  from the platform-authorized endpoint intent and actual rendered Service.
+
+Terraform module bytes are unchanged. The MongoDB Definition sample references
+its namespace as provider source; the namespace Definition supplies cluster
+identity. Gateway/endpoint Type and Definition samples document the separate
+preexisting Gateway resource (no Gateway apply/adoption/destroy).
+
+Product focused route renderer/guard, Gateway registration/readiness and
+namespace placement checks pass, including missing/modified/duplicate route
+rejection and legacy endpoint checks. Frontend typecheck/lint/build and docs checks
+pass. Real native/Score batch Deploy, shared namespace-bound PostgreSQL,
+authenticated SQL, template routes through the existing Gateway, update/restart
+identity preservation and Console product cleanup passed on kind. Full frontend
+passes 1067 tests/typecheck/lint/build; full product backend and main have the
+same 103 failing top-level tests and 8 skips, with both builds passing. This is
+not a full green backend gate. Execution evidence:
+https://github.com/pr3s3nt/poc/blob/main/orchestrator_docs/verification/2026-11-16-namespace-template-routes.md.
+No shared Gateway/controller/DNS/TLS was changed. Inspect the tested feature
+commit `5407998b0e08dc0da51c19c28517dfa191e7a3ee` with a
+backend supporting #84; older deployed template pins are not automatically changed.
+
+## Echo Gateway metadata refinement — Refs pr3s3nt/poc#84
+
+Approved 2026-11-17. Gateway Definition sample `987c5ce` now uses the generic
+Echo envelope; it requires product implementation `35bcd06c` or later. Product
+merge `df719115` includes current main `ab37e2d4`. The cluster still uses its
+dedicated existing-cluster adapter/Driver Account; Gateway readiness and admission
+are checked separately before render/CD. Legacy existing-gateway revisions are
+retained, with no implicit migration or physical Gateway ownership.
+
+All Terraform and template bytes are identical to tested runtime pin `5407998`.
+The sample YAML parses and exposes the required gateway envelope. Real merged
+native/Score batch deploy, update, restart and product cleanup passed. A new
+review application confirms executed READY Echo Gateway resources and reaches
+both actual workloads in a browser. Full merged frontend passes 1076 tests and
+typecheck/lint/build. Backend comparison, source attribution and cleanup are
+recorded in the product verification record:
+https://github.com/pr3s3nt/poc/blob/main/orchestrator_docs/verification/2026-11-17-echo-gateway.md.
+That checkpoint preceded user acceptance; no tag was made.
+
+## Accepted template main integration — 2026-11-18
+
+User approved merging the template feature into main after product merge
+`pr3s3nt/poc@6084919e`, without repeating product tests. Gateway/Endpoint examples
+now use the approved display names and explicit `class: default` matching criteria
+shared across apps/environments. Example keys, infrastructure placeholders and
+references remain unchanged. Terraform/template runtime bytes remain identical
+to accepted pin `5407998`; source pins already deployed are not auto-upgraded.
+No new release tag or main-installation catalog import is performed.
+

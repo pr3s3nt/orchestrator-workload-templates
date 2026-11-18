@@ -42,10 +42,10 @@ driverInputs:
     provider_bindings:
       kubernetes:
         target: resource
-        # Thay bootstrap-dev bằng class cluster thực tế nếu khác.
-        resource_ref: "k8s-cluster.bootstrap-dev#environments.@app.@env"
+        # Kế thừa cluster/provider từ namespace; không chọn cluster lần nữa.
+        resource_ref: "k8s-namespace.default#environments.@app.@env"
 # staging/in-cluster là lựa chọn của mẫu; sửa theo môi trường cần sử dụng.
-# Cần Definition cluster class bootstrap-dev và namespace class default match
+# Cần Definition namespace class default match
 # được cùng ngữ cảnh. Giữ nguyên @app/@env để platform resolve dependencies.
 criteria:
   - env_type: staging

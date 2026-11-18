@@ -1,0 +1,7 @@
+key: k8s-gateway
+inputs: []
+outputs:
+  - name: gateway
+    type: any
+    required: true
+    secret: false
