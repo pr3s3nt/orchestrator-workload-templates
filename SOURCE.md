@@ -108,7 +108,7 @@ real Git MongoDB import, portable exports and REUSED/CONFLICT history invariance
 
 ## Namespace-owned placement and template HTTPRoute — Refs pr3s3nt/poc#84
 
-Feature branch `features/Httproute`, not accepted or tagged. Runtime changes
+Initially implemented on feature branch `features/Httproute`. Runtime changes
 copied from `pr3s3nt/poc` commit `1a33bed7`:
 
 - `backend/template-sources/standard/bundle.yaml`: declares capability
@@ -130,7 +130,7 @@ identity preservation and Console product cleanup passed on kind. Full frontend
 passes 1067 tests/typecheck/lint/build; full product backend and main have the
 same 103 failing top-level tests and 8 skips, with both builds passing. This is
 not a full green backend gate. Execution evidence:
-https://github.com/pr3s3nt/poc/blob/features/Httproute/orchestrator_docs/verification/2026-11-16-namespace-template-routes.md.
+https://github.com/pr3s3nt/poc/blob/main/orchestrator_docs/verification/2026-11-16-namespace-template-routes.md.
 No shared Gateway/controller/DNS/TLS was changed. Inspect the tested feature
 commit `5407998b0e08dc0da51c19c28517dfa191e7a3ee` with a
 backend supporting #84; older deployed template pins are not automatically changed.
@@ -151,6 +151,16 @@ review application confirms executed READY Echo Gateway resources and reaches
 both actual workloads in a browser. Full merged frontend passes 1076 tests and
 typecheck/lint/build. Backend comparison, source attribution and cleanup are
 recorded in the product verification record:
-https://github.com/pr3s3nt/poc/blob/features/Httproute/orchestrator_docs/verification/2026-11-17-echo-gateway.md.
-Feature branches remain awaiting user acceptance; no main merge or tag is made
-in this template repository.
+https://github.com/pr3s3nt/poc/blob/main/orchestrator_docs/verification/2026-11-17-echo-gateway.md.
+That checkpoint preceded user acceptance; no tag was made.
+
+## Accepted template main integration — 2026-11-18
+
+User approved merging the template feature into main after product merge
+`pr3s3nt/poc@6084919e`, without repeating product tests. Gateway/Endpoint examples
+now use the approved display names and explicit `class: default` matching criteria
+shared across apps/environments. Example keys, infrastructure placeholders and
+references remain unchanged. Terraform/template runtime bytes remain identical
+to accepted pin `5407998`; source pins already deployed are not auto-upgraded.
+No new release tag or main-installation catalog import is performed.
+

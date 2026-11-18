@@ -120,10 +120,11 @@ output `asyncUri` (bí mật) vào Resource Type `postgres` và ánh xạ
 
 ## Namespace placement và template HTTPRoute — issue pr3s3nt/poc#84
 
-Nhánh thử `features/Httproute` bổ sung capability `endpoint-httproute-v1` và
+Bộ đã nghiệm thu và được duyệt merge main ngày 2026-11-18 bổ sung capability `endpoint-httproute-v1` và
 `resources/httproute.tpl`. Backend resolve/validate endpoint intent, template
 render HTTPRoute tới Service thật. Gateway là resource có Definition riêng,
 tham chiếu cluster và Gateway có sẵn; không được provision hoặc xóa cùng app.
 Xem [Gateway/endpoint samples](resource-catalog/gateway/README.md).
 Mẫu MongoDB dùng provider namespace, kế thừa cluster qua namespace. Các Terraform
-module không đổi. Dùng exact commit khi inspect; chưa có release tag/nghiệm thu.
+module không đổi. Dùng exact commit khi inspect; chưa có release tag mới.
+Gateway/Endpoint Definition đều dùng class `default` và dùng chung cho app mới.

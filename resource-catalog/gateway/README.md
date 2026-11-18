@@ -1,7 +1,8 @@
 # Existing Gateway và endpoint
 
-Cần backend hỗ trợ issue `pr3s3nt/poc#84`. Bộ này đang trên nhánh thử,
-chưa phát hành tag và chưa được nghiệm thu.
+Cần backend hỗ trợ issue `pr3s3nt/poc#84`. Bộ này đã được người dùng nghiệm thu và duyệt merge vào main ngày 2026-11-18;
+chưa phát hành tag. Gateway và Endpoint đều dùng class `default`, áp dụng chung
+cho các app/môi trường.
 
 1. Nhập `gateway-type.yaml`, rồi sửa và nhập `gateway-definition.yaml`.
    Chọn cluster class thực tế, Gateway namespace/name/listener và domain đã có
@@ -35,7 +36,7 @@ credential/cluster variable vào database. Database cloud giữ Definition riên
 
 ## Echo metadata — điều chỉnh đã duyệt 2026-11-17
 
-Cần backend poc từ commit `35bcd06c` (nhánh tính năng chưa nghiệm thu).
+Cần backend poc từ commit `35bcd06c`; phần sản phẩm đã merge main tại `6084919e`.
 Mẫu mới dùng `echo`; `values.variables.gateway` chứa cluster và policy. Executor
 trả metadata, không gọi Kubernetes và không tạo ownership. Platform kiểm tra
 Gateway/listener/hostname/allowedRoutes riêng trước render/publish. Cluster vẫn
