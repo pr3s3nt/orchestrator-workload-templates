@@ -126,3 +126,9 @@ không có Resource Definition riêng để provision HTTPRoute. Mỗi ứng d�
 Deploy qua cùng luồng sản phẩm; import YAML không chứng minh deploy/readiness,
 failover hoặc dữ liệu được backup. PostgreSQL thường/Redis/MySQL/MongoDB là một
 instance. Không coi thay class/module/image là thao tác migration dữ liệu.
+
+## Kiểm chứng thực tế
+
+[Lượt chạy kind ngày 2026-11-18](VERIFICATION-2026-11-18.md) ghi rõ catalog đã nhập,
+Deploy thực tế, cleanup app cũ, dữ liệu giữ để thử và khác biệt trạng thái
+UNREFERENCED còn cần điều tra. Không thay kết quả runtime bằng bước bootstrap.
