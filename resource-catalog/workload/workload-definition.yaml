@@ -1,0 +1,17 @@
+# Mẫu cấu hình: thay các giá trị <...> theo Console đích trước khi Kiểm tra.
+# Nhập Type trước Definition. Không ghi password, token hoặc kubeconfig vào YAML.
+# Chuẩn bị Git template templates/standard trước; template_source là ID, không phải URL.
+# Namespace cung cấp placement/cluster; không đặt Terraform provider_bindings ở đây.
+key: default-workload
+name: Workload template chuẩn
+resourceType: workload
+driverType: template
+driverInputs:
+  values:
+    variables:
+      template_source: <ID template source đã kiểm tra trên Console đích>
+      template_inputs: {}
+      namespace: ${resources['k8s-namespace.default#environments.@app.@env'].outputs.name}
+criteria:
+  - class: default
+provision: {}

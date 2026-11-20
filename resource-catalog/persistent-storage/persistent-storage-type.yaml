@@ -1,0 +1,15 @@
+# Nhập Type trước Definition; Type đã tồn tại khác schema sẽ trả CONFLICT.
+key: persistent-storage
+inputs:
+  - name: storage
+    type: string
+    required: false
+outputs:
+  - name: claimName
+    type: string
+    required: true
+    secret: false
+  - name: namespace
+    type: string
+    required: true
+    secret: false

@@ -1,0 +1,12 @@
+# Nhập Type trước Definition; Type đã tồn tại khác schema sẽ trả CONFLICT.
+key: k8s-cluster
+inputs: []
+outputs:
+  - name: name
+    type: string
+    required: true
+    secret: false
+  - name: cluster
+    type: any
+    required: true
+    secret: false

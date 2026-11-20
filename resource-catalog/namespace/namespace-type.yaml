@@ -1,0 +1,8 @@
+# Nhập Type trước Definition; Type đã tồn tại khác schema sẽ trả CONFLICT.
+key: k8s-namespace
+inputs: []
+outputs:
+  - name: name
+    type: string
+    required: true
+    secret: false

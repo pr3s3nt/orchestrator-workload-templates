@@ -1,37 +1,32 @@
-# Nhập sau mongodb-type.yaml: Console > Cấu hình tài nguyên > Nhập YAML/JSON.
-# Điền image MongoDB đã pin digest và chọn cluster/namespace/criteria phù hợp.
-# Bấm Kiểm tra cấu hình, xem commit đã xác minh, rồi Đăng ký.
-# Hệ thống tự tạo IDs/hash; không cần lấy source pin từ DevTools.
-# Cần Console hỗ trợ Git source url/ref/path (issue pr3s3nt/poc#79).
-# Password/master_password do executor sinh, không điền vào file.
+# Mẫu cấu hình: thay các giá trị <...> theo Console đích trước khi Kiểm tra.
+# Nhập Type trước Definition. Không ghi password, token hoặc kubeconfig vào YAML.
+# Giữ key staging-mongodb cũ; phạm vi thực tế do criteria quyết định, không phải tên key.
+# Thay image digest thật. Password/master_password/tags do executor cấp.
 key: staging-mongodb
-name: Staging MongoDB
+name: MongoDB trong namespace
 resourceType: mongodb
 driverType: terraform
 driverInputs:
   values:
     source:
       url: https://github.com/pr3s3nt/orchestrator-workload-templates
-      ref: main
+      ref: b8e98a7f2d2239ab99de52b5dda7321653119dec
       path: terraform/mongodb
     variables:
-      # Docker Official Image MongoDB hoặc image nội bộ tương thích có mongosh.
-      # Dùng digest thật đã duyệt, dạng registry/repository@sha256:64-hex.
-      image: "<image MongoDB đã pin bằng digest>"
-      namespace: "${resources['k8s-namespace.default#environments.@app.@env'].outputs.name}"
+      image: <image MongoDB đã pin bằng digest>
+      namespace: ${resources['k8s-namespace.default#environments.@app.@env'].outputs.name}
       username: app
       storage: 10Gi
-      # Rỗng: dùng StorageClass mặc định của cluster; sửa nếu cần class cụ thể.
       storage_class: ""
-      # Rỗng: không dùng imagePullSecret; nếu cần, điền tên Secret đã có ở namespace.
       image_pull_secret_name: ""
       root_username: admin
-    # Tên module variable -> input của Type. Workload param ghi đè fallback.
     input_mapping:
-      database: {param: database}
-      username: {param: username}
-      storage: {param: storage}
-    # Tên module output -> output của Type. Không công bố claimName/namespace.
+      database:
+        param: database
+      username:
+        param: username
+      storage:
+        param: storage
     output_mapping:
       host: host
       port: port
@@ -42,12 +37,7 @@ driverInputs:
     provider_bindings:
       kubernetes:
         target: resource
-        # Kế thừa cluster/provider từ namespace; không chọn cluster lần nữa.
-        resource_ref: "k8s-namespace.default#environments.@app.@env"
-# staging/in-cluster là lựa chọn của mẫu; sửa theo môi trường cần sử dụng.
-# Cần Definition namespace class default match
-# được cùng ngữ cảnh. Giữ nguyên @app/@env để platform resolve dependencies.
+        resource_ref: k8s-namespace.default#environments.@app.@env
 criteria:
-  - env_type: staging
-    class: in-cluster
+  - class: default
 provision: {}

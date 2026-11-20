@@ -42,3 +42,9 @@ trả metadata, không gọi Kubernetes và không tạo ownership. Platform ki�
 Gateway/listener/hostname/allowedRoutes riêng trước render/publish. Cluster vẫn
 dùng driver kết nối riêng và Driver Account. Definition existing-gateway cũ giữ
 layout phẳng, adapter và revision; không tự đổi các pin đang chạy.
+
+## Liên kết với bộ catalog
+
+Gateway và namespace cùng tham chiếu k8s-cluster.default trong Environment.
+Nhập [cluster và namespace](../README.md#thứ-tự-nhập) trước khi chọn Gateway/Endpoint.
+Giữ cùng class/cluster target để Endpoint và workload có placement nhất quán.

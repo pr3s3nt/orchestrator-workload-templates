@@ -163,3 +163,36 @@ shared across apps/environments. Example keys, infrastructure placeholders and
 references remain unchanged. Terraform/template runtime bytes remain identical
 to accepted pin `5407998`; source pins already deployed are not auto-upgraded.
 No new release tag or main-installation catalog import is performed.
+
+## Complete resource catalog — issue #1
+
+User approved the complete example catalog after reviewing all seven existing
+Terraform modules. This slice adds missing cluster/namespace/workload/PostgreSQL
+(normal and HA)/Redis/MySQL/PVC Types and Definitions. The resulting catalog has
+10 Types and 11 Definitions. Existing Gateway/Endpoint/MongoDB keys are preserved;
+Gateway and namespace now select cluster default, MongoDB criteria is default
+without a staging restriction. PostgreSQL HA alone uses class ha. All module
+source references use reviewed commit b8e98a7; no module/template runtime file
+is modified. Workload template-source IDs and Driver Account keys remain
+installation-specific; image placeholders require real approved digests.
+
+Validation parses all 21 public YAML documents and the actual HCL of all seven
+modules, checks required variables, input/output names/types/sensitivity, executor
+owned password/tags exclusion, default/ha criteria and closed typed references.
+All seven modules are covered; 55 local Markdown links/anchors are checked.
+Runtime module/template paths remain byte-identical to origin/main. No full
+product tests, Terraform plan/apply, cluster/cloud operation or Console database
+mutation is performed; live import/readiness is not claimed. The samples require
+the documented destination prerequisites and Type compatibility before import.
+This work is on features/complete-resource-catalog, pending user review and main
+merge; it does not publish a release tag or change pins in any installation.
+
+## User-authorized kind execution — 2026-11-18
+
+After the configuration-only checkpoint, the user explicitly authorized old test
+app cleanup and exact-catalog deployment. See
+[the live record](resource-catalog/VERIFICATION-2026-11-18.md) for all seven modules,
+real API/Console import and batch Deploy, authenticated database/PVC/route/browser
+checks, original-main preservation, manual remnant/empty-fixture cleanup and the
+UNREFERENCED metadata observation. This later execution does not rewrite the
+configuration-only checkpoint or claim a product cleanup fix/full green suite.
